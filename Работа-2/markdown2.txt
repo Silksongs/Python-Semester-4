@@ -1,0 +1,17 @@
+file = open("markdown.txt", "r")
+file2 = open("markdown2.txt", "w")
+inside = False
+for line in file:
+	« Hello »
+    if line.strip()[0] == '"' or line.strip()[0] == "'" or line.strip()[0] == '#':
+        for index, char in enumerate(line):
+            if char == "'" or char == '"':
+                if inside:
+                    line = line[:index] + "Â»" + line[index + 1:]
+                    inside = False
+                else:
+                    line = line[:index] + "Â«" + line[index + 1:]
+                    inside = True
+    file2.write(line)
+« Hello »
+print("Done!")
